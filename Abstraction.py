@@ -33,22 +33,22 @@ class Shape(ABC):
     def area(self):
         pass
 
-#Concrete class:Cirlce   
-    class Circle(Shape):
-        def __init__(self, radius):
-            self.radius = radius
-            
-        def area(self):
-            return 3.14 * self.radius * self.radius
+#Concrete class:Circle   
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
         
+    def area(self):
+        return 3.14 * self.radius * self.radius
+    
 #Concrete class:Rectangle
-    class Rectangle(shape):
-        def __init__(self, width, height):
-            self.width = width
-            self.height = height
-            
-        def area(self):
-            return self.width * self.height
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        
+    def area(self):
+        return self.width * self.height
         
 #Example usage
 shapes = [Circle(5), Rectangle(4, 6)]
@@ -56,8 +56,8 @@ shapes = [Circle(5), Rectangle(4, 6)]
 for shape in shapes:
     print(f"Area: {shape.area()}")
 
-c1= Circle[5]
-r1= Rectangle[4,6]
+c1 = Circle(5)
+r1 = Rectangle(4, 6)
 print(f"Area of Circle: {c1.area()}")
 print(f"Area of Rectangle: {r1.area()}")
 
@@ -70,15 +70,6 @@ class Payment(ABC):
     @abstractmethod
     def process_payment(self, amount):
         """Process a payment for the given amount."""
-        pass
-
-class CreditCardPayment(Payment):
-    from abc import ABC, abstractmethod
-
-class Payment(ABC):
-    @abstractmethod
-    def process_payment(self, amount):
-        """Process the payment of the specified amount."""
         pass
 
 class CreditCardPayment(Payment):
@@ -151,15 +142,18 @@ class Vehicle(ABC):
     @abstractmethod
     def stop(self):
         pass
-
-def showDetails(self):
-    return f"Brand: {self.brand}, Wheels: {self.wheels}"
-
-@abstractmethod
-def start(self):
-    pass
-
-@abstractmethod
+    
+    class Bicycle(Vehicle):
+        def __init__(self, brand):
+            super().__init__(brand, 2)
+    
+        def start(self):
+            return f"{self.brand} bicycle is starting by pedaling."
+        def stop(self):
+            return f"{self.brand} bicycle is stopping by applying brakes."
+    
+        def ringBell(self):
+            return f"Bicycle bell: Ring ring!"
 def stop(self):
     pass
 

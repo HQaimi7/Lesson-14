@@ -138,3 +138,92 @@ book.borrow()
 print(book.get_details())
 book.return_book()
 print(book.get_details())
+
+#-----------------------Fitness Tracker---------------------
+print("\n-----------------------------\n")
+class FitnessTracker:
+    def __init__(self):
+        self._steps = 0 # Private attribute
+        self._calories_burned = 0 # Private attribute
+    
+    def add_steps(self, steps):
+        if steps > 0:
+            self._steps += steps
+            self._calories_burned += steps * 0.05 #Assure 0.05 calories burned per step
+            print(f"Added {steps} steps. Total steps: {self._steps}")
+        else:
+            print("Steps must be positive number.")
+    
+    def get_summary(self):
+        return {
+            "steps": self.__steps,
+            "calories_burned": self._calories_burned
+        }
+#example usage
+tracker = FitnessTracker()
+tracker.add_steps(1000)
+tracker.add_steps(500)
+print(tracker.get_summary())
+
+print("------------- Airline System -------------\n")
+
+class Passenger:
+    def __init__(self, name, passport_number):
+        self.__name = name  # Private attribute
+        self.__passport_number = passport_number  # Private attribute
+
+    def get_details(self):
+        return f"Name: {self.__name}, Passport Number: {self.__passport_number}"
+
+class Flight:
+    def __init__(self, flight_number, destination):
+        self.__flight_number = flight_number  # Private attribute
+        self.__destination = destination  # Private attribute
+        self.__passengers = []  # Private attribute
+
+    def add_passenger(self, passenger):
+        self.__passengers.append(passenger)
+        print(f"Added passenger: {passenger.get_details()} to flight {self.__flight_number}.")
+
+    def get_passenger_list(self):
+        return [passenger.get_details() for passenger in self.__passengers]
+
+    def get_flight_info(self):
+        return f"Flight Number: {self.__flight_number}, Destination: {self.__destination}"
+
+class Booking:
+    def __init__(self):
+        self.__bookings = []  # Private attribute
+
+    def book_flight(self, flight, passenger):
+        flight.add_passenger(passenger)
+        self.__bookings.append((flight, passenger))
+class Booking:
+    def __init__(self):
+        self.__bookings = []  # Private attribute
+
+    def book_flight(self, flight, passenger):
+        flight.add_passenger(passenger)
+        self.__bookings.append((flight, passenger))
+        print(f"Booking confirmed for {passenger.get_details()} on flight {flight.get_flight_info()}.")
+
+    def get_all_bookings(self):
+        return [(flight.get_flight_info(), passenger.get_details()) for flight, passenger in self.__bookings]
+
+# Example usage
+# Create passengers
+passenger1 = Passenger("Alice Smith", "A1234567")
+passenger2 = Passenger("Bob Johnson", "B2345678")
+
+# Create a flight
+flight = Flight("AA101", "New York")
+
+# Create a booking
+booking_system = Booking()
+booking_system.book_flight(flight, passenger1)
+booking_system.book_flight(flight, passenger2)
+
+# View flight info and bookings
+print("\nFlight Information:", flight.get_flight_info())
+print("\nPassenger List:", flight.get_passenger_list())
+print("\nAll Bookings:", booking_system.get_all_bookings())
